@@ -56,6 +56,18 @@ public class BankTest {
         assertEquals(diskList,bank.listNameOfDisk());
 
     }
+	    @Test
+    void givenNameOfDisk_WhenTypeOfEvent_ThenAccurateResponse() {
+
+        bank.typeOfEvent(disk.getName());
+        List<String> nameList = new ArrayList<>();
+        nameList.add(disk.getName());
+        assertEquals(nameList,bank.typeOfEvent(disk.getName()));
+        List<String>expected=new ArrayList<>();
+        assertEquals(expected, bank.typeOfEvent(disk1.getName()));
+
+
+    }
 
 
 
