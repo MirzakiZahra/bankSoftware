@@ -49,6 +49,14 @@ public class BankTest {
         assertEquals(250, bank.fineOfEveryOne(amountOfFine));
 
     }
+    @Test
+    void givenListOfPerson_WhenListNameOfDiskOfGharz_ThenListNameOfDisk(){
+        List<String> diskList=new ArrayList<>();
+        diskList.add(disk.getName());
+        assertEquals(diskList,bank.listNameOfDisk());
+
+    }
+
 
 
 }
