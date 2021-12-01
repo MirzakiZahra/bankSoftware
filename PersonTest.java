@@ -18,7 +18,17 @@ public class PersonTest {
         disk=new Disk("film");
         myDate =new MyDate(1400,8,20);
     }
-
+    @Test
+    //@CsvSource({"myDate,disk"})
+    void givenDiskAndDate_WhenValidBorrowMethod_ThenSetDiskAndDate(){
+        person.borrow(myDate,disk);
+        assertEquals(myDate,person.getReceived());
+        List<String> expectedDiskName = new ArrayList<>();
+        expectedDiskName.add(disk.getName());
+        assertEquals(expectedDiskName,person.getDiskListOfFine().stream().
+                map(i->i.getName()).filter(j->j.equals(disk.getName())).collect(Collectors.toList()));
+    }
+  
 
 
 }
