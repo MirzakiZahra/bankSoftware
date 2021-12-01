@@ -36,5 +36,14 @@ public class Bank {
         return nameList;
     }
 
-  
+    public List<String> typeOfEvent(String name) {
+
+       // return gharz.stream().map(i -> i.getDiskListOfGharz().stream().
+         //               filter(j -> j.getName().equals(name)).toString())
+           //     .collect(Collectors.toList());
+         return  fine.stream().flatMap(person -> person.getDiskListOfFine().stream()).
+                map(disk -> disk.getName()).filter(diskName->diskName.equals(name)).
+                collect(Collectors.toList());
+
+    }
 }
