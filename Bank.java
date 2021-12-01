@@ -28,5 +28,13 @@ public class Bank {
 
     }
 
+    public List<String> listNameOfDisk() {
 
+        List<String> nameList = fine.stream().
+                flatMap(person -> person.getDiskListOfFine().stream()).
+                map(Disk::getName).collect(Collectors.toList());
+        return nameList;
+    }
+
+  
 }
