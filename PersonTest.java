@@ -30,5 +30,12 @@ public class PersonTest {
     }
   
 
-
+  @Test
+    void givenDiskAndDate_WhenValidReturnMethod_ThenSetDiskAndDate(){
+        person.returnDisk(myDate,disk);
+        assertEquals(myDate,person.getRefunds());
+        List<String> expectedDiskName = new ArrayList<>();
+        assertEquals(expectedDiskName,person.getDiskListOfFine().stream().
+                map(i->i.getName()).filter(j->j.equals(disk.getName())).collect(Collectors.toList()));
+    }
 }
