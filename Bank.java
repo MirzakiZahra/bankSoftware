@@ -21,5 +21,12 @@ public class Bank {
 
     }
 
-  
+    public Double fineOfEveryOne(int amountOfFine) {
+        fine.stream().forEach(i -> this.fineOfOnePerson(i, amountOfFine));
+        Double sum = fine.stream().map(i -> i.getFine()).reduce(0.0, (i, j) -> i + j);
+        return sum;
+
+    }
+
+
 }
