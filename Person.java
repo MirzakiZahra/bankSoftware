@@ -69,5 +69,12 @@ public class Person {
         this.refunds = refunds;
     }
 
+    public void borrow( MyDate  date, Disk disk) {
+        this.setReceived(date);
+        this.setDisk(disk);
+        this.diskListOfFine.add(disk);
 
+    }
+
+   
 }
