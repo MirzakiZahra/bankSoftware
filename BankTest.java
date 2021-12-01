@@ -37,6 +37,18 @@ public class BankTest {
 
     // @ParameterizedTest
     // @CsvSource({"63.0"})
+    @Test
+    void givenAmountOfFineAndDate_WhenCalculateAccurateFine_ThenAccurateResponse() {
+
+        assertEquals(20, bank.fineOfOnePerson(person, amountOfFine));
+    }
+
+    @Test
+    void givenListOfPersonAndAmountOfFine_WhenCalculateFineForALL_ThenAccurateResponse() {
+        bank.fine.add(person1);
+        assertEquals(250, bank.fineOfEveryOne(amountOfFine));
+
+    }
 
 
 }
