@@ -75,6 +75,12 @@ public class Person {
         this.diskListOfFine.add(disk);
 
     }
+	 public void returnDisk( MyDate  date,Disk disk) {
+        this.setRefunds(date);
+        this.diskListOfFine.remove(disk);
+        this.setDisk(null);
+
+    }
 
    
 }
