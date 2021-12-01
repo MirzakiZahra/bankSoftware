@@ -8,5 +8,18 @@ public class Bank {
     Set<Person>personSet=new HashSet<>();
     List<Person> fine = new ArrayList<>();
 
+    public double fineOfOnePerson(Person person, int amountOfFine) {
+        double subtractionDay = person.getRefunds().getDay() - person.getReceived().getDay();
+        double subtractionMonth = (person.getRefunds().getMonth() - person.getReceived().getMonth()) * 30;
+        double subtractionYear = (person.getRefunds().getYear() - person.getReceived().getYear()) * 365;
+        double temp = subtractionDay + subtractionMonth + subtractionYear;
+        temp = temp - 7;
+        Double fine = temp * amountOfFine;
+        person.setFine(fine);
+        return fine;
 
+
+    }
+
+  
 }
