@@ -35,6 +35,28 @@ public class MyDate {
     public void setDay(int day) {
         this.day = day;
     }
+	    public boolean valid_date(int year, int month, int day){
+        boolean valid=false;
+        if (year<= 9999 && year>=1 ){
+            if (month>=1 && month<=6){
+                if (day >=1 && day<=31){
+                    valid=true;
+                }
+            }
+            if (month>=7 && month<=11){
+                if (day >=1 && day<=30){
+                    valid=true;
+                }
+            }
+            if (month == 12){
+                if (day >=1 && day<=29){
+                    valid=true;
+                }
+            }
+
+        }
+        return valid;
+    }
 
 
 }
