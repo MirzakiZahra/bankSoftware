@@ -22,6 +22,14 @@ public class MyDateTest {
         boolean expected = myDate.valid_date(year, month, day);
         assertEquals(output, expected);
     }
+    @ParameterizedTest
+    @CsvSource({"10,-7,13,false","10,13,20,false","10,10,20,true"})
+    void givenValidMonth_WhenValidMonth_ThenAccurateResponseReturn
+            (int year, int month, int day, boolean output){
+
+        boolean expected = myDate.valid_date(year, month, day);
+        assertEquals(output, expected);
+    }
 
 
 
