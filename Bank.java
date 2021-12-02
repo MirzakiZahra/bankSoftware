@@ -15,6 +15,9 @@ public class Bank {
         double temp = subtractionDay + subtractionMonth + subtractionYear;
         temp = temp - 7;
         Double fine = temp * amountOfFine;
+        if (fine<0){
+            fine=0.0;
+        }
         person.setFine(fine);
         return fine;
 
@@ -22,8 +25,8 @@ public class Bank {
     }
 
     public Double fineOfEveryOne(int amountOfFine) {
-        fine.stream().forEach(i -> this.fineOfOnePerson(i, amountOfFine));
-        Double sum = fine.stream().map(i -> i.getFine()).reduce(0.0, (i, j) -> i + j);
+        personSet.stream().forEach(i -> this.fineOfOnePerson(i, amountOfFine));
+        Double sum = personSet.stream().map(i -> i.getFine()).reduce(0.0, (i, j) -> i + j);
         return sum;
 
     }
@@ -44,6 +47,15 @@ public class Bank {
          return  fine.stream().flatMap(person -> person.getDiskListOfFine().stream()).
                 map(disk -> disk.getName()).filter(diskName->diskName.equals(name)).
                 collect(Collectors.toList());
+
+    }
+    public Person existOfPerson(String name){
+        for (Person person:personSet){
+            if (person.getName().equals(name)){
+                return person;
+            }
+        }
+        return null;
 
     }
 }

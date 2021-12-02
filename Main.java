@@ -4,14 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
-        Person person = new Person();
-        Disk disk = new Disk();
-        MyDate myDate = new MyDate();
         System.out.println("****welcome****");
         int choice=0;
+        int numberOfDebt=0;
 
         do {
-            System.out.println("1.enter event\n2.fine\n3.exit");
+            System.out.println("1.enter event\n2.fine\n3.AccurateOutput\n4.exit");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -19,7 +17,7 @@ public class Main {
                     System.out.println("please enter a number of event");
                     int input = scanner.nextInt();
                     System.out.println("please enter an amount of debt");
-                    int numberOfDebt = scanner.nextInt();
+                    numberOfDebt = scanner.nextInt();
                     for (int i = 0; i < input; i++) {
 
 
@@ -28,6 +26,9 @@ public class Main {
                         int day = scanner.nextInt();
                         int month = scanner.nextInt();
                         int year = scanner.nextInt();
+                        MyDate myDate = new MyDate();
+                        Person person = new Person();
+                        Disk disk = new Disk();
                         myDate.setDay(day);
                         myDate.setMonth(month);
                         myDate.setYear(year);
@@ -40,29 +41,38 @@ public class Main {
                             person.setName(nameOfMember);
                             disk.setName(nameOfDisk);
                             bank.fine.add(person);
-                            bank.personSet.add(person);
+                            if (bank.existOfPerson(nameOfMember)==null) {
+                                bank.personSet.add(person);
+                            }else {
+                                person=bank.existOfPerson(nameOfMember);
+                            }
                             person.borrow(myDate, disk);
 
                         } else {
                             disk.setName(nameOfDisk);
-                            bank.fine.remove(person);
-                            bank.personSet.add(person);
-                            bank.fineOfOnePerson(person, numberOfDebt);
-                            person.returnDisk(myDate, disk);
+                            bank.fine.remove(bank.existOfPerson(nameOfMember));
+                            bank.fineOfOnePerson(bank.existOfPerson(nameOfMember), numberOfDebt);
+                            bank.existOfPerson(nameOfMember).returnDisk(myDate, disk);
                         }
                     }
                     break;
                 case 2:
-                    System.out.println("enter amount of fine");
-                    int number = scanner.nextInt();
-                    bank.fineOfEveryOne(number);
+                    System.out.println(bank.fineOfEveryOne(numberOfDebt));
                     break;
                 case 3:
+                    System.out.println("Fines:");
+                    bank.fineOfEveryOne(numberOfDebt);
+                    bank.personSet.stream().forEach(i-> System.out.println(i.getName()+": "+
+                            i.getFine()));
+                    System.out.println("Borrowed Disks:");
+                    bank.listNameOfDisk().stream().forEach(i-> System.out.println(i));
+                    break;
+                case 4:
                     break;
 
 
             }
-        }while (choice!=3);
+        }while (choice!=4);
     }
 
 
