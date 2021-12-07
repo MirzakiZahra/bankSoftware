@@ -31,6 +31,7 @@ public class BankTest {
         person.getDiskListOfFine().add(disk);
         amountOfFine = 10;
         bank.fine.add(person);
+        bank.personSet.add(person);
 
 
     }
@@ -45,6 +46,7 @@ public class BankTest {
 
     @Test
     void givenListOfPersonAndAmountOfFine_WhenCalculateFineForALL_ThenAccurateResponse() {
+        bank.personSet.add(person1);
         bank.fine.add(person1);
         assertEquals(250, bank.fineOfEveryOne(amountOfFine));
 
@@ -56,7 +58,8 @@ public class BankTest {
         assertEquals(diskList,bank.listNameOfDisk());
 
     }
-	    @Test
+
+    @Test
     void givenNameOfDisk_WhenTypeOfEvent_ThenAccurateResponse() {
 
         bank.typeOfEvent(disk.getName());
@@ -68,7 +71,5 @@ public class BankTest {
 
 
     }
-
-
 
 }
